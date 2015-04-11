@@ -1,0 +1,14 @@
+This is a tool to execute jobs on a remote Linux server.
+User needs to specify their shell commands in a script(remote.sh) and run 
+example.py. All the outputs will be generated in the same directory under the 
+folder output.
+
+The main idea is to fork a child process to run ssh. Connect the child's 
+controlling terminal to a pty so that parent process can write to and read from 
+it. Use regular expression to match the possible prompt from child process, 
+like "password:" or "the authentication of xxx cannot be established" and do 
+stuff accordingly.
+
+What can be done better?
+Right now, the code doesn't maintain a ssh session with server. Every time a 
+command is run, a new ssh connection is setup. Should be able to improve.
